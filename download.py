@@ -4,9 +4,13 @@ import torch
 
 def download_model():
     # do a dry run of loading the huggingface model, which will download weights
-    model = "tiiuae/falcon-40b-instruct"
+    model = AutoModelForCausalLM.from_pretrained(
+        "tiiuae/falcon-40b-instruct",
+        trust_remote_code=True,
+    )
 
     tokenizer = AutoTokenizer.from_pretrained(model)
+    
     pipeline = transformers.pipeline(
         "text-generation",
         model=model,

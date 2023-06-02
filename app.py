@@ -11,9 +11,13 @@ app = Potassium("my_app")
 def init():
     device = 0 if torch.cuda.is_available() else -1 #
     
-    model = "tiiuae/falcon-40b-instruct"
+    model = AutoModelForCausalLM.from_pretrained(
+        "tiiuae/falcon-40b-instruct",
+        trust_remote_code=True,
+    )
 
     tokenizer = AutoTokenizer.from_pretrained(model)
+    
     model = transformers.pipeline(
         "text-generation",
         model=model,
