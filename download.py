@@ -5,7 +5,7 @@ import torch
 def download_model():
     # do a dry run of loading the huggingface model, which will download weights
     model = AutoModelForCausalLM.from_pretrained(
-        "tiiuae/falcon-40b-instruct",
+        "tiiuae/falcon-7b-instruct",
         trust_remote_code=True,
     )
 
